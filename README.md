@@ -2,14 +2,11 @@
 Autoscript writer for No Man's Sky (NMS) AMUMSS environment.
 
 Place original.exml and mod.exml at this folder.
-
 Open LUA_AUTOSCRIPT.lua in any text editor and change options in field INPUT.
-
 Launch LUA_AUTOSCRIPT.BAT.
 
 
 Feel free from routine!
-
 And enjoy :)
 
 
