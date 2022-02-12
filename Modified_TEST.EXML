@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--File created using MBINCompiler version (2.0.13)-->
+<Data template="GcPlayerGlobals">
+  <Property name="Unknown0x0" value="0.9" />
+  <Property name="Unknown0x4" value="0.7" />
+  <Property name="Unknown0x8" value="0.4" />
+  <Property name="Known" />
+  <Property name="Unknown0xC" value="0.2" />
+  <Property name="Unknown0x10" value="0" />
+  <Property name="Unknown0x14" value="4" />
+  <Property name="Unknown0x18" value="4" />
+  <Property name="Unknown0x1C" value="False" />
+  <Property name="Unknown0x1D" value="True" />
+  <Property name="Unknown0x20" value="1" />
+  <Property name="Unknown0x24" value="0.3" />
+  <Property name="Unknown0x28" value="0.99" />
+  <Property name="Unknown0x2C" value="1.5" />
+  <Property name="Unknown0x30" value="40" />
+  <Property name="Unknown0x34" value="5" />
+  <Property name="Unknown0x38" value="0" />
+  <Property name="Unknown0x3C" value="0" />
+  <Property name="Unknown0x40" value="0.045" />
+  <Property name="Unknown0x50" value="GcInWorldUIScreenData.xml">
+    <Property name="ScreenScale" value="0.03" />
+    <Property name="ScreenOffset" value="Vector3f.xml">
+      <Property name="x" value="0.05" />
+      <Property name="yHU" value="1" />
+      <Property name="N" value="0" />
+    </Property>
+    <Property name="ScreenRotation" value="Vector3f.xml">
+      <Property name="x" value="20" />
+      <Property name="y" value="180" />
+      <Property name="z" value="30" />
+    </Property>
+  </Property>
+  <Property name="Unknown0x80" value="GcInWorldUIScreenData.xml">
+    <Property name="ScreenScale" value="0.03" />
+    <Property name="ScreenOffset" value="Vector3f.xml">
+      <Property name="x" value="0.07" />
+      <Property name="y" value="-0.025" />
+      <Property name="z" value="0" />
+    </Property>
+    <Property name="ScreenRotation" value="Vector3f.xml">
+      <Property name="x" value="0" />
+      <Property name="y" value="270" />
+      <Property name="z" value="0" />
+    </Property>
+  </Property>
+  <Property name="Unknown0xB0" value="0.045" />
+  <Property name="Unknown0xC0" value="GCHUISOSI.xml">
+    <Property name="ScreenScale" value="0.03" />
+    <Property name="ScreenOffset" value="Vector3f.xml">
+      <Property name="x" value="150" />
+      <Property name="y" value="0.12" />
+      <Property name="z" value="-0.05" />
+    </Property>
+    <Property name="ScreenRotation" value="Vector3f.xml">
+      <Property name="x" value="0" />
+      <Property name="y" value="200" />
+      <Property name="z" value="0" />
+    </Property>
+  </Property>
+</Data>
