@@ -15,6 +15,7 @@ Limits of applicability.
 
 
 ============
+
 Initially, I relied on the naive mjstral script, that tried to do the same.
 But then my script became so big and different that it would be lie to say that it is based on it.
 Though, we always stand on the shoulders of giants. And his script was a good base to push off.
