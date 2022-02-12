@@ -11,7 +11,7 @@ And enjoy :)
 
 
 Limits of applicability.  
- -It works only with EXML files with same structure of properties. For example, if some properties were added in 1.exml and other were added in 2.exml this script shouldn't be used.  
+ -It works only with EXML files with same structure of properties. For example, if some properties were added in 1.exml and other were deleted in 2.exml this script shouldn't be used.  
 
 
 
