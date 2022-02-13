@@ -40,7 +40,6 @@ MOD_AUTOSCRIPT_MAIN_1_2 =
 					["EXML_CHANGE_TABLE"] 	= 
 					{
 						{
-							-- ["SPECIAL_KEY_WORDS"] 	= {"","",},
 ]]
 
 MOD_AUTOSCRIPT_BODY_1 =
@@ -51,6 +50,7 @@ MOD_AUTOSCRIPT_BODY_1_CLOSURE =[[},
 
 
 MOD_AUTOSCRIPT_BODY_2 =
+						{
 [[							["VALUE_CHANGE_TABLE"] 		= 
 							{
 								{]]
