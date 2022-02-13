@@ -18,6 +18,40 @@ Modified_EXML_name_cut = string.sub(Modified_EXML_name,1,#Modified_EXML_name-5) 
 --==================================================================================
 
 
+
+-- Architecture of the script.
+--==================================================================================
+-- In the top of the script: container templates and general helpers.
+-- 
+-- For scalability and readability every part (e.g., every algorithm) should contain its own objects to work with.
+-- It could be done in a manner where Walker and NodeList contain all attributes, but it quickly lead to obfuscated code.
+-- 
+-- The architecture of meta-algorithm.
+-- 1. Read every line.
+-- 2. If graph for Deep First Search (DFS) exists, perform DFS.
+-- 3. If lines are different, perform Graph Root Search algorithm.
+-- 4. During traversing to the root extract all needed names/values.
+-- 5. Write extracted names/values to new file.
+--==================================================================================
+
+-- TODO list
+--====================================
+-- 1. Implement a visitor pattern.
+--  	every nested algorithm should have its own walker with appropriate attributes.
+-- 2. Create getter and setter interfaces.
+--====================================
+
+-- Open Questions.
+--====================================
+-- How to create a visitor pattern?
+-- How to reduce the number of "if" statements (conditions) in proper way?
+-- Is it resource intensive?
+-- Does anyone want to generalize it to the case of created/deleted lines in documents?
+-- Does anyone want to add some proven robustness (and, firstly, prove it)?
+--====================================
+
+
+
 -- MOD_AUTOSCRIPT_MAIN_1 = the very beginning of the new script file. Consists of two parts.
 MOD_AUTOSCRIPT_MAIN_1_1 =
 [[NMS_MOD_DEFINITION_CONTAINER = 
@@ -49,8 +83,8 @@ MOD_AUTOSCRIPT_BODY_1_CLOSURE =[[},
 
 
 MOD_AUTOSCRIPT_BODY_2 =
-						{
-[[							["VALUE_CHANGE_TABLE"] 		= 
+[[						{
+							["VALUE_CHANGE_TABLE"] 		= 
 							{
 								{]]
 
@@ -311,7 +345,6 @@ function Walker(StartLineNum)
 	-- Tip: it is possible to right brackets '()' in the right side of eqaution and therefore call fucntions without brackets.
 	-- But it breaks writing pattern of adding '()' in the end of any function.
 	return 	{
-			-- self = self, -- Debug option
 			increaseLastNodeIndex = increaseLastNodeIndex,
 			setCurrentNodeIndex = setCurrentNodeIndex,
 			setPreviousVisitedNode = setPreviousVisitedNode,
@@ -390,7 +423,6 @@ function Node (ParentNodeIndex, counter_RightAndDown)
 	-- But it breaks writing pattern of adding '()' in the end of any function.
 
 	return 	{
-			-- self = self, -- Debug option
 			toggleFlag_RightAndDown = toggleFlag_RightAndDown,
 			toggleFlag_DownStraight = toggleFlag_DownStraight,
 			getStrLine = getStrLine,
@@ -564,14 +596,48 @@ end
 -- Table convertation to format that PRECEDING_KEY_WORDS can understand.
 function TableConvertationToPKW(glb_FoundKeysAndValuesTable) -- Duct tape
 	for i = 1, #glb_FoundKeysAndValuesTable do
-		local abc, bca = table.unpack(glb_FoundKeysAndValuesTable[i])
-		if abc and bca ~= nil then
-			table.insert(glb_ConvertedKeysAndValuesTable, abc)
-			table.insert(glb_ConvertedKeysAndValuesTable, bca)
+		local row_1, row_2 = table.unpack(glb_FoundKeysAndValuesTable[i])
+		if row_1 and row_2 ~= nil then
+			table.insert(glb_ConvertedKeysAndValuesTable, row_1)
+			table.insert(glb_ConvertedKeysAndValuesTable, row_2)
 		else
 			table.insert(glb_ConvertedKeysAndValuesTable, glb_FoundKeysAndValuesTable[i])
 		end
 	end
+end
+
+-- added at version 1.1 for further improvements.
+-- Buffer object to implement additional features.
+function buffer_GRS
+	local self = 	{
+					SavedFoundKeysAndValuesTable = glb_FoundKeysAndValuesTable
+					SavedConvertedKeysAndValuesTable = glb_ConvertedKeysAndValuesTable
+					}
+
+	local function setSavedFoundKeysAndValuesTable(NewValue)
+		self.SavedFoundKeysAndValuesTable = NewValue
+	end
+	
+	local function setSavedConvertedKeysAndValuesTable(NewValue)
+		self.SavedConvertedKeysAndValuesTable = NewValue
+	end
+
+
+	local function getSavedFoundKeysAndValuesTable()
+		return self.SavedFoundKeysAndValuesTable
+	end
+
+	local function getSavedConvertedKeysAndValuesTable()
+		return self.SavedConvertedKeysAndValuesTable
+	end
+
+	
+	return 	{
+			setSavedFoundKeysAndValuesTable = setSavedFoundKeysAndValuesTable,
+			setSavedConvertedKeysAndValuesTable = setSavedConvertedKeysAndValuesTable,
+			getSavedFoundKeysAndValuesTable = getSavedFoundKeysAndValuesTable,
+			getSavedConvertedKeysAndValuesTable = getSavedConvertedKeysAndValuesTable
+			}
 end
 -- ==================================================================================
 -- ==================================================================================
@@ -621,17 +687,6 @@ function writeInNewScript_BODY_2(glb_ConvertedKeysAndValuesTable)
 	writeToFile(MOD_AUTOSCRIPT_BODY_2_CLOSURE, Modified_EXML_name_cut)
 end
 -- ==================================================================================
-
-
-
--- Open Questions.
---====================================
--- How to create a visitor pattern?
--- How to reduce the number of "if" statements (conditions) in proper way?
--- Is it resource intensive?
--- Does anyone want to generalize it to the case of created/deleted lines in documents?
--- Does anyone want to add some proven robustness (and, firstly, prove it)?
---====================================
 
 
 
